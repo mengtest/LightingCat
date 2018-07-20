@@ -31,6 +31,12 @@ func (this *PlayerTask) ParseMsg(data []byte) bool {
 		if ok {
 			glog.Info("recv = ", recvCmd.GetName())
 		}
+		m := usercmd.LoginS2CMsg{
+			PlayerId: 123,
+		}
+		d, _ := common.EncodeGoCmd(uint16(usercmd.DemoTypeCmd_LoginRes), &m)
+		this.AsyncSend(d)
+		glog.Error("[login success] name = ", recvCmd.GetName(), " id = ", 123)
 	default:
 		glog.Error("[cmd] no mathcing funciton %u", cmd)
 	}
