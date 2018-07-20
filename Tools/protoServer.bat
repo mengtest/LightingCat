@@ -1,13 +1,13 @@
 @echo off 
 
-set srcPath=%cd%\
- 
-set distGoPath=%srcPath%..\Server\src\usercmd
- 
-set binPath=%srcPath%\bin
+set srcPath=%cd%
 
-set target = %srcPath%..\Proto\MyDemo.proto
+cd %cd%\..
+
+set distGoPath=Server\src\usercmd
  
-%binPath%\protoc --gogofaster_out=%distGoPath% %target%
+set binPath=Tools\bin
+ 
+%binPath%\protoc --gogofaster_out=%distGoPath% Proto\MyDemo.proto
 echo "ok"
 pause
