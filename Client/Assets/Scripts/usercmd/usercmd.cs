@@ -10,10 +10,10 @@
 // Generated from: Proto/MyDemo.proto
 namespace usercmd
 {
-  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"LoginC2SMsg")]
-  public partial class LoginC2SMsg : global::ProtoBuf.IExtensible
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"LoginC2S")]
+  public partial class LoginC2S : global::ProtoBuf.IExtensible
   {
-    public LoginC2SMsg() {}
+    public LoginC2S() {}
     
     private string _name = "";
     [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"name", DataFormat = global::ProtoBuf.DataFormat.Default)]
@@ -28,10 +28,10 @@ namespace usercmd
       { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
   }
   
-  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"LoginS2CMsg")]
-  public partial class LoginS2CMsg : global::ProtoBuf.IExtensible
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"LoginS2C")]
+  public partial class LoginS2C : global::ProtoBuf.IExtensible
   {
-    public LoginS2CMsg() {}
+    public LoginS2C() {}
     
     private uint _playerId = default(uint);
     [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"playerId", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
@@ -46,6 +46,76 @@ namespace usercmd
       { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
   }
   
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"SearchC2S")]
+  public partial class SearchC2S : global::ProtoBuf.IExtensible
+  {
+    public SearchC2S() {}
+    
+    private usercmd.GameType _type = usercmd.GameType.Single;
+    [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"type", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(usercmd.GameType.Single)]
+    public usercmd.GameType type
+    {
+      get { return _type; }
+      set { _type = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"SearchS2C")]
+  public partial class SearchS2C : global::ProtoBuf.IExtensible
+  {
+    public SearchS2C() {}
+    
+    private usercmd.RetCode _ret = usercmd.RetCode.fail;
+    [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"ret", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(usercmd.RetCode.fail)]
+    public usercmd.RetCode ret
+    {
+      get { return _ret; }
+      set { _ret = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"MatchS2C")]
+  public partial class MatchS2C : global::ProtoBuf.IExtensible
+  {
+    public MatchS2C() {}
+    
+    private usercmd.RetCode _ret = usercmd.RetCode.fail;
+    [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"ret", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(usercmd.RetCode.fail)]
+    public usercmd.RetCode ret
+    {
+      get { return _ret; }
+      set { _ret = value; }
+    }
+    private uint _curplayernum = default(uint);
+    [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"curplayernum", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(uint))]
+    public uint curplayernum
+    {
+      get { return _curplayernum; }
+      set { _curplayernum = value; }
+    }
+    private uint _roomid = default(uint);
+    [global::ProtoBuf.ProtoMember(3, IsRequired = false, Name=@"roomid", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(uint))]
+    public uint roomid
+    {
+      get { return _roomid; }
+      set { _roomid = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
     [global::ProtoBuf.ProtoContract(Name=@"DemoTypeCmd")]
     public enum DemoTypeCmd
     {
@@ -54,7 +124,41 @@ namespace usercmd
       LoginReq = 1,
             
       [global::ProtoBuf.ProtoEnum(Name=@"LoginRes", Value=2)]
-      LoginRes = 2
+      LoginRes = 2,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"SearchReq", Value=3)]
+      SearchReq = 3,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"SearchRes", Value=4)]
+      SearchRes = 4,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"MatchRes", Value=5)]
+      MatchRes = 5
+    }
+  
+    [global::ProtoBuf.ProtoContract(Name=@"GameType")]
+    public enum GameType
+    {
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"Single", Value=0)]
+      Single = 0,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"Multiple", Value=1)]
+      Multiple = 1
+    }
+  
+    [global::ProtoBuf.ProtoContract(Name=@"RetCode")]
+    public enum RetCode
+    {
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"fail", Value=0)]
+      fail = 0,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"success", Value=1)]
+      success = 1,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"wait", Value=2)]
+      wait = 2
     }
   
 }

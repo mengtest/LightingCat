@@ -14,9 +14,9 @@ public class Test : MonoBehaviour {
         m_Socket = new TcpClient();
         m_Socket.Connect("192.168.31.236", 8888);
         m_Stream = m_Socket.GetStream();
-        LoginC2SMsg msg = new LoginC2SMsg();
+        LoginC2S msg = new LoginC2S();
         msg.name = "huashao";
-        byte[] dd = ProtobufTool.ProtoBufToBytes<LoginC2SMsg>(msg);
+        byte[] dd = ProtobufTool.ProtoBufToBytes<LoginC2S>(msg);
         int len = dd.Length+2;
         Debug.LogError(len);
         byte[] buf = new byte[len + 6];
@@ -35,7 +35,7 @@ public class Test : MonoBehaviour {
         Debug.LogError(string.Format("recv len:{0} id:{1}", rlen, rId));
         byte []rbuf = new byte[rlen-2];
         Array.Copy(recv, 6, rbuf, 0, rlen - 2);
-        LoginS2CMsg rmsg = ProtobufTool.BytesToProtoBuf<LoginS2CMsg>(rbuf);
+        LoginS2C rmsg = ProtobufTool.BytesToProtoBuf<LoginS2C>(rbuf);
         Debug.LogError(rmsg.playerId);
         m_Stream.Close();
         m_Socket.Close();

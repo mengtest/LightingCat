@@ -26,6 +26,15 @@ public class ProtobufTool
         return result;
     }
 
+    public static T BytesToProtoBuf<T>(byte[] bytes,int offset,int length)
+    {
+        T result;
+        using (MemoryStream memoryStream = new MemoryStream(bytes, offset, length))
+        {
+            result = Serializer.Deserialize<T>(memoryStream);
+        }
+        return result;
+    }
 }
 
 
