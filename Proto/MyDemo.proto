@@ -12,15 +12,15 @@ enum DemoTypeCmd {
 
 //游戏类型
 enum GameType{
-	Single   = 1;//单机
-	Multiple = 2;//多人
+	Single   = 0;//单机
+	Multiple = 1;//多人
 }
 
 //错误码 可扩展错误原因类型
 enum RetCode{
+	fail    = 0;//普通失败
 	success = 1;//成功
-	fail    = 2;//普通失败
-	wait    = 3;//等待中
+	wait    = 2;//等待中
 }
 
 message LoginC2S{
@@ -32,16 +32,16 @@ message LoginS2C{
 }
 
 message SearchC2S{
-	optional GameType type = 1[default = Multiple]; 
+	optional GameType type = 1; 
 }
 
 message SearchS2C{
-	optional RetCode ret = 1[default = fail];
+	optional RetCode ret = 1;
 }
 
 //匹配信息
 message MatchS2C{
-	optional RetCode ret          = 1[default = fail];
+	optional RetCode ret          = 1;
 	optional uint32  curplayernum = 2;//当前一同等待人数
 	optional uint32  roomid       = 3;//ret成功时，返回进入的roomid
 }
