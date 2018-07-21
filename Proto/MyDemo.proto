@@ -32,16 +32,16 @@ message LoginS2C{
 }
 
 message SearchC2S{
-	optional GameType type = 1; 
+	optional GameType type = 1[default = Multiple]; 
 }
 
 message SearchS2C{
-	optional RetCode ret = 1;
+	optional RetCode ret = 1[default = fail];
 }
 
 //匹配信息
 message MatchS2C{
-	optional RetCode ret          = 1;
+	optional RetCode ret          = 1[default = fail];
 	optional uint32  curplayernum = 2;//当前一同等待人数
 	optional uint32  roomid       = 3;//ret成功时，返回进入的roomid
 }
