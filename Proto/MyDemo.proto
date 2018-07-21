@@ -3,15 +3,45 @@ syntax = "proto2";
 package usercmd;
 
 enum DemoTypeCmd {
-	LoginReq = 1;
-	LoginRes = 2;
-
+	LoginReq  = 1;
+	LoginRes  = 2;
+	SearchReq = 3;
+	SearchRes = 4;
+	MatchRes  = 5;
 }
 
-message LoginC2SMsg{
+//游戏类型
+enum GameType{
+	Single   = 1;//单机
+	Multiple = 2;//多人
+}
+
+//错误码 可扩展错误原因类型
+enum RetCode{
+	success = 1;//成功
+	fail    = 2;//普通失败
+	wait    = 3;//等待中
+}
+
+message LoginC2S{
 	optional string name = 1;
 }
 
-message LoginS2CMsg{
+message LoginS2C{
 	optional uint32 playerId = 1;
+}
+
+message SearchC2S{
+	optional GameType type = 1; 
+}
+
+message SearchS2C{
+	optional RetCode ret = 1;
+}
+
+//匹配信息
+message MatchS2C{
+	optional RetCode ret          = 1;
+	optional uint32  curplayernum = 2;//当前一同等待人数
+	optional uint32  roomid       = 3;//ret成功时，返回进入的roomid
 }
